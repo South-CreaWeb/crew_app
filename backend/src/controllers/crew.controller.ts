@@ -9,6 +9,7 @@ export const getCrew = async (request: Request, response: Response) => {
 
         response.status(200).json(crew)
     } catch (error) {
+        console.log(error)
         response.status(500).json({ error: "Error finding crew" })
     }
 }
@@ -26,7 +27,7 @@ export const createCrew = async (request: Request, response: Response) => {
 
         response.status(201).json(crew)
     } catch (error) {
-
+        console.log(error)
         response.status(500).json({ error: "error creating crew" })
     }
 }
@@ -49,6 +50,7 @@ export const updateCrew = async (request: Request, response: Response) => {
 
         response.status(200).json(updateCrew)
     } catch (error) {
+        console.log(error)
         response.status(500).json({ error: "Not updated Crew" })
     }
 }
@@ -66,6 +68,7 @@ export const deleteCrew = async (request: Request, response: Response) => {
         response.status(200).json({ message: "Crew deleted" })
 
     } catch (error) {
+        console.log(error)
         response.status(500).json({ error: "Error deleting crew" })
     }
 }
