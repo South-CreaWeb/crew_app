@@ -40,8 +40,7 @@ export const updateCrew = async (request: Request, response: Response) => {
 
         const updateCrew = await Crew.findByIdAndUpdate(
             id,
-            dataCrew,
-            {new: true}
+            dataCrew
         )
 
         if(!updateCrew) {

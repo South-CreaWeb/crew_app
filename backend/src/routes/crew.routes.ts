@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/', getCrew)
 router.post('/', createCrew)
-router.put('/:id', updateCrew)
+router.patch('/:id', updateCrew)
 router.delete('/:id', deleteCrew)
 
 export default router

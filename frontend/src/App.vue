@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import type { CrewData } from './types/crew.type'
 
-import { createCrew, getCrews } from './api/crew.api'
+import { createCrew, getCrews, deleteCrew, updateCrew } from './api/crew.api'
 
 
 
@@ -23,6 +23,27 @@ async function handleCreate(data: { name: string, role: string }) {
   name.value = ""
 }
 
+async function handleDelete(id: string) {
+
+  await deleteCrew(id)
+
+  crews.value = crews.value.filter((crew) => crew._id !== id)
+
+
+}
+
+async function handleUpdate(id: string, data: {name: string, role: string}) {
+
+  await updateCrew(id, data)
+
+  const modifiedCrew = crews.value.find((crew) => crew._id === id)
+
+  if(modifiedCrew) {
+    Object.assign(modifiedCrew, data)
+    console.log("Salut")
+  }
+}
+
 </script>
 
 <template>
@@ -40,6 +61,8 @@ async function handleCreate(data: { name: string, role: string }) {
   <ul>
     <li v-for="crew in crews" :key="crew.customId">
       {{ crew.name }}--{{ crew.role }}
+      <button @click="handleDelete(crew._id)">Delete Crew</button>
+      <button @click="handleUpdate(crew._id, {name: 'Richard', role: 'Crew'})">Edit Crew</button>
     </li>
   </ul>
 </template>
